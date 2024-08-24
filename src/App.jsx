@@ -17,6 +17,14 @@ import CounterContextProvider, { CounterContext } from './Context/CounterContext
 import UserTokenContextProvider from './Context/UserTokenContext'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import ProtectedRoutesAuth from './components/ProtectedRoutesAuth/ProtectedRoutesAuth'
+import ProductDetails from './components/ProductDetails/ProductDetails'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import CartContextProvider from './Context/CartContext'
+import toast, { Toaster } from 'react-hot-toast';
+
+
+let query = new QueryClient()
 
 
 function App() {
@@ -31,6 +39,7 @@ function App() {
       {path:"categories", element: <ProtectedRoutes><Categories /></ProtectedRoutes>},
       {path:"brands", element: <ProtectedRoutes><Brands /></ProtectedRoutes>},
       {path:"products", element: <ProtectedRoutes><Products /></ProtectedRoutes>},
+      {path:"productDetails/:id/:category", element: <ProtectedRoutes><ProductDetails /></ProtectedRoutes>},
 
       {path:"*", element: <NotFound />},
     ]}
@@ -51,12 +60,19 @@ function App() {
   // ])
 
   return (
-    <UserTokenContextProvider>
-      <CounterContextProvider>
-        <RouterProvider router={routes}></RouterProvider>
-      </CounterContextProvider>
-    </UserTokenContextProvider>
-    
+  <>
+    <QueryClientProvider client={query}>
+      <UserTokenContextProvider>
+        <CounterContextProvider>
+          <CartContextProvider>
+            <RouterProvider router={routes}></RouterProvider>
+          </CartContextProvider>
+          <Toaster />
+    <ReactQueryDevtools />
+        </CounterContextProvider>
+      </UserTokenContextProvider>
+    </QueryClientProvider>
+  </>
   )
 }
 

@@ -8,7 +8,7 @@ export default function Navbar() {
     let [count, setCount] = useState(0)
 
     let {token, setToken} = useContext(UserTokenContext)
-    console.log(token, "hi from nav comp.");
+    // console.log(token, "hi from nav comp."); Clear Console
     
     let navigate = useNavigate()
     
@@ -21,7 +21,7 @@ export default function Navbar() {
     }
 
     return (
-        <nav className='bg-slate-300 p-2 lg:fixed left-0 top-0 right-0'>
+        <nav className='bg-slate-300 p-2 lg:fixed z-20 left-0 top-0 right-0'>
             <div className='container mx-auto flex flex-col lg:flex-row justify-between items-center text-center'>
                 <div className='flex flex-col lg:flex-row items-center'>
                     <img src={logo} width={120} className='lg:mr-7 mb-4 lg:mb-0' alt="" />
@@ -39,6 +39,9 @@ export default function Navbar() {
                         </li>
                         <li>
                             <NavLink to='categories'>Categories</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='products'>Products</NavLink>
                         </li>
                         </> : null
                         }

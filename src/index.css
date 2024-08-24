@@ -20,6 +20,10 @@
   transform: translateY(0%)
 }
 
+.btn {
+  @apply bg-green-500 p-2 w-full rounded-md text-white mt-5
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
