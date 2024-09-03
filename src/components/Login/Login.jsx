@@ -31,7 +31,7 @@ export default function Login() {
                     console.log(data);
                     tokenContext.setToken(data.token)
 
-                    convertToken()
+                    jwtDecode(data.token)
 
                     // Yro7 3la l login
                     navigate("/")

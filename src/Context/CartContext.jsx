@@ -7,6 +7,11 @@ const headers = {
     token: window.localStorage.getItem("token")
 }
 
+//Wishlist
+
+
+
+//_____________________________________
 function addProductToCart(productId) {
     return axios.post(
         'https://ecommerce.routemisr.com/api/v1/cart', 
