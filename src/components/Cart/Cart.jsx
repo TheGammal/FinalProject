@@ -47,7 +47,8 @@ export default function Cart() {
         if (data.message == "success") {
             setNoCartInfo("No Item To Show !!")
         }
-        // setCart(data)
+        setCart(data)
+        setNumOfItems(0)
     }
     
     async function updateProduct(productId, count) {
