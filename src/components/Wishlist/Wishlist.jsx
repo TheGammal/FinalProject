@@ -58,7 +58,7 @@ export default function Wishlist() {
                     </tr>
                 </thead>
                 <tbody>
-                    {wishlist?.data?.data.map(product => (
+                    {wishlist.data.data.map(product => (
                         <tr key={product._id} className="bg-white border-b">
                             <td className="p-4">
                                 <img src={product.imageCover} className="w-16 md:w-32 max-w-full max-h-full" />
