@@ -9,7 +9,28 @@ const headers = {
 
 //Wishlist
 
+function addProductToWishlist(productId) {
+    return axios.post(
+        'https://ecommerce.routemisr.com/api/v1/wishlist', 
+        {productId: productId},
+        {
+            headers: headers
+        }
+    ).then(res => res).catch(err => err)
+}
 
+function getWish() {
+    return axios.get('https://ecommerce.routemisr.com/api/v1/wishlist', {headers})
+    .then(res => res).catch(err => err)
+}
+
+
+function deleteWishProduct(productId) {
+    return axios.delete(
+        `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,
+        {headers}
+    ).then(res => res).catch(err => err)
+}
 
 //_____________________________________
 function addProductToCart(productId) {
@@ -66,9 +87,10 @@ function getOrders(userId) {
 
 export default function CartContextProvider({children}) {
     let [cartId, setCartId] = useState(null)
+    let [wishlistId, setWishlistId] = useState(null)
     let [numOfItems, setNumOfItems] = useState(0)
     
-    return <CartContext.Provider value={{cartId, setCartId, addProductToCart, getCart, deleteSpecificProduct, updateProductCount, clearCart, cachOnDel, onlinePayment, getOrders, numOfItems, setNumOfItems}} >
+    return <CartContext.Provider value={{cartId, setCartId, addProductToCart, getCart, deleteSpecificProduct, updateProductCount, clearCart, cachOnDel, onlinePayment, getOrders, numOfItems, setNumOfItems, addProductToWishlist, getWish, wishlistId, setWishlistId, deleteWishProduct}} >
         {children}
     </CartContext.Provider>
 }

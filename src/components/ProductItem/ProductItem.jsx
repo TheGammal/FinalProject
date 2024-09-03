@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './ProductItem.module.css'
 import { Link } from 'react-router-dom'
 
-export default function ProductItem({product, addCart, isLoadingBtn, currentIds}) {
+export default function ProductItem({product, addCart, isLoadingBtn, currentIds, addWish}) {
     
     useEffect(() => {}, [])
     return (
@@ -19,6 +19,9 @@ export default function ProductItem({product, addCart, isLoadingBtn, currentIds}
                 </Link>
                 <button className='btn' onClick={() => {addCart(product.id); }}>
                     {isLoadingBtn && currentIds[product.id] ? <i className='fa fa-spinner fa-spin'></i> : <span>Add to cart</span> }
+                </button>
+                <button className='btn' onClick={() => {addWish(product.id); }}>
+                    Add to wish-Test
                 </button>
             </div>
         </div>

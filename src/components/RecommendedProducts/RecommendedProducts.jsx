@@ -8,7 +8,7 @@ import { CartContext } from '../../Context/CartContext'
 import toast from 'react-hot-toast';
 
 export default function RecommendedProducts() {
-    let {addProductToCart, setNumOfItems} = useContext(CartContext)
+    let {addProductToCart, setNumOfItems, addProductToWishlist} = useContext(CartContext)
     const [currentIds, setCurrentIds] = useState([])
 
     let [isLoadingBtn, setIsLoadingBtn] = useState(false)
@@ -43,6 +43,13 @@ export default function RecommendedProducts() {
     // console.log("data => ", data); Clear Console
     // console.log("isLoading => ", isLoading); Clear Console
     
+    //Wishlist
+    async function addToWishItem(id) {
+        let bl7W = await addProductToWishlist(id);
+        console.log("bl7W", bl7W);
+        
+    }
+    //________________________________________________________
     async function addToCartItem(id) {
         setIsLoadingBtn(true)
 
@@ -79,7 +86,7 @@ export default function RecommendedProducts() {
     return (
         <div>
             <div className="container mx-auto row pt-5">
-                {data?.data.data.map(product => <ProductItem key={product.id} currentIds={currentIds} isLoadingBtn={isLoadingBtn} addCart={addToCartItem} product={product} /> )}
+                {data?.data.data.map(product => <ProductItem key={product.id} currentIds={currentIds} isLoadingBtn={isLoadingBtn} addCart={addToCartItem} product={product} addWish={addToWishItem} /> )}
             </div>
         </div>
     )

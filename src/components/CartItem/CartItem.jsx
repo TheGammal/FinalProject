@@ -44,7 +44,9 @@ export default function CartItem({product, updateProduct, deleteProduct, showAct
                 {product.price} $
             </td>
             {showAction ? <td className="px-6 py-4">
-                <button onClick={() => deleteProduct(product.product.id)} className="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</button>
+                <button onClick={() => deleteProduct(product.product.id)} className="font-medium text-red-600">
+                    Remove
+                </button>
             </td> : null }
             
         </tr>
