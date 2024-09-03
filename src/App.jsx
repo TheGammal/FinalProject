@@ -22,6 +22,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import CartContextProvider from './Context/CartContext'
 import toast, { Toaster } from 'react-hot-toast';
+import Checkout from './components/Checkout/Checkout'
+import Order from './components/Order/Order'
 
 
 let query = new QueryClient()
@@ -40,6 +42,8 @@ function App() {
       {path:"brands", element: <ProtectedRoutes><Brands /></ProtectedRoutes>},
       {path:"products", element: <ProtectedRoutes><Products /></ProtectedRoutes>},
       {path:"productDetails/:id/:category", element: <ProtectedRoutes><ProductDetails /></ProtectedRoutes>},
+      {path:"checkout/:cartId", element: <ProtectedRoutes><Checkout /></ProtectedRoutes>},
+      {path:"allorders", element: <ProtectedRoutes><Order /></ProtectedRoutes>},
 
       {path:"*", element: <NotFound />},
     ]}

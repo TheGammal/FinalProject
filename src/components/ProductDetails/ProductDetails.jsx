@@ -121,7 +121,7 @@ export default function ProductDetails() {
                     <span>{productDetails.price} EGP</span>
                     <span>{productDetails.ratingsAverage} <i className='fa fa-star text-yellow-300'></i></span>
                 </div>
-                <button className='btn' onClick={() => addToCartItem(productDetails?.id)}>
+                <button disabled={isLoadingBtn} className='btn' onClick={() => addToCartItem(productDetails?.id)}>
                     {isLoadingBtn && currentIds[productDetails.id] ? <i className='fa fa-spinner fa-spin'></i> : <span>Add to cart</span> }
                 </button>
             </div>

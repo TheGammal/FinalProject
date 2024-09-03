@@ -5,6 +5,7 @@ import axios from 'axios'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { UserTokenContext } from '../../Context/UserTokenContext'
+import { jwtDecode } from 'jwt-decode'
 
 
 export default function Login() {
@@ -41,7 +42,9 @@ export default function Login() {
                     localStorage.setItem("token", data.token)
                     console.log(data);
                     tokenContext.setToken(data.token)
-                    
+
+                    convertToken()
+
                     // Yro7 3la l login
                     navigate("/")
                 }
