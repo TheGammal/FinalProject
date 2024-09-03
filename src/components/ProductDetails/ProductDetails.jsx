@@ -20,7 +20,7 @@ export default function ProductDetails() {
     let {id, category} = useParams();
     // console.log(id); Clear Console
 
-    let {addProductToCart} = useContext(CartContext)
+    let {addProductToCart, setNumOfItems} = useContext(CartContext)
     
     const [currentIds, setCurrentIds] = useState([])
 
@@ -37,6 +37,8 @@ export default function ProductDetails() {
         // toast('Hello From The Other Side.');
         // toast.success('Hello From The Other Side.');
         if (data.data.status == "success") {
+            setNumOfItems(data.data.numOfCartItems)
+                        
             toast.success(data.data.message);
         } else {
             toast.error(data.response.data.message)

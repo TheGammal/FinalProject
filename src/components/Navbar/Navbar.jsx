@@ -3,12 +3,15 @@ import styles from './Navbar.module.css'
 import logo from '../../assets/images/freshcart-logo.svg'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { UserTokenContext } from '../../Context/UserTokenContext'
+import { CartContext } from '../../Context/CartContext'
 
 export default function Navbar() {
     let [count, setCount] = useState(0)
 
     let {token, setToken} = useContext(UserTokenContext)
     // console.log(token, "hi from nav comp."); Clear Console
+
+    let {numOfItems} = useContext(CartContext)
     
     let navigate = useNavigate()
     
@@ -60,9 +63,14 @@ export default function Navbar() {
                         <ul className='flex flex-col lg:flex-row gap-2'>
                             {
                             token ? 
+                            <>
+                            <span className='bg-orange-50 text-black font-bold px-2 rounded-md'>{numOfItems}</span>
+                            <li>
+                                <i className='fa fa-cart-shopping'></i>
+                            </li>
                             <li>
                                 <button onClick={logOut}>SignOut</button>
-                            </li> : 
+                            </li> </> : 
                             <>
                             <li>
                                 <NavLink to='login'>Login</NavLink>

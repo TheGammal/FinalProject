@@ -8,7 +8,7 @@ import { CartContext } from '../../Context/CartContext'
 import toast from 'react-hot-toast';
 
 export default function RecommendedProducts() {
-    let {addProductToCart} = useContext(CartContext)
+    let {addProductToCart, setNumOfItems} = useContext(CartContext)
     const [currentIds, setCurrentIds] = useState([])
 
     let [isLoadingBtn, setIsLoadingBtn] = useState(false)
@@ -53,6 +53,7 @@ export default function RecommendedProducts() {
         let bl7 = await addProductToCart(id);
         console.log("bl7", bl7);
         if (bl7.data.status == "success") {
+            setNumOfItems(bl7.data.numOfCartItems)
             toast.success(bl7.data.message);
         } else {
             toast.error(bl7.response.data.message)

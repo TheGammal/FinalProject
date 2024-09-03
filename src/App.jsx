@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -20,7 +20,7 @@ import ProtectedRoutesAuth from './components/ProtectedRoutesAuth/ProtectedRoute
 import ProductDetails from './components/ProductDetails/ProductDetails'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import CartContextProvider from './Context/CartContext'
+import CartContextProvider, { CartContext } from './Context/CartContext'
 import toast, { Toaster } from 'react-hot-toast';
 import Checkout from './components/Checkout/Checkout'
 import Order from './components/Order/Order'
@@ -31,6 +31,9 @@ let query = new QueryClient()
 
 function App() {
   const [count, setCount] = useState(0)
+
+  let {getCart, setNumOfItems} = useContext(CartContext)
+
   const routes = createBrowserRouter([
     {path:"", element: <LayOut />, children: [
       {path:"register", element: <ProtectedRoutesAuth><Register /></ProtectedRoutesAuth> },
@@ -63,15 +66,24 @@ function App() {
   //   ]}
   // ])
 
+  useEffect(() => {
+    getCartInfo()
+  }, [])
+
+  async function getCartInfo() { //To Refresh Cart Icon from any place
+    let data = await getCart()
+    setNumOfItems(data.data.numOfCartItems)
+  } 
+
   return (
   <>
     <QueryClientProvider client={query}>
       <UserTokenContextProvider>
         <CounterContextProvider>
-          <CartContextProvider>
+
             <RouterProvider router={routes}></RouterProvider>
-          </CartContextProvider>
           <Toaster />
+
     <ReactQueryDevtools />
         </CounterContextProvider>
       </UserTokenContextProvider>
