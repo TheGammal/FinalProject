@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from './Login.module.css'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { UserTokenContext } from '../../Context/UserTokenContext'
 import { jwtDecode } from 'jwt-decode'
-
 
 export default function Login() {
     let [apiError, setApiError] = useState(null)
@@ -16,17 +15,6 @@ export default function Login() {
 
     let navigate = useNavigate()
 
-    // async function register(formValue) {
-    //     console.log("Hello from Register", formValue);
-    //     let {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup', formValue)
-    //     console.log(data);
-        
-    //     if (date.message == "success") {
-    //         //Login
-    //     } else {
-    //         //Errors
-    //     }
-    // }
     function login(formValue) {
         setApiError(null) //To make refresh "Error alert" when click
         setIsLoading(true) //To show loader when click on submit btn
@@ -99,7 +87,9 @@ export default function Login() {
                 <button disabled={isLoading} type="submit" className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     {isLoading ? <i className='fa fa-spinner fa-spin'></i> : "Login" }
                 </button>
-                
+                <NavLink to='/forgetPassword' className="text-sm text-gray-600 dark:text-gray-400 hover:underline mt-4 block">
+                    Forgot Password?
+                </NavLink>
             </form>
         </div>
     )

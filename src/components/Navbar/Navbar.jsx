@@ -64,6 +64,9 @@ export default function Navbar() {
                             {
                             token ? 
                             <>
+                            <NavLink to='wishlist'>
+                                <i className='fa-solid fa-heart'></i>
+                            </NavLink>
                             <span className='bg-orange-50 text-black font-bold px-2 rounded-md'>{numOfItems}</span>
                             <li>
                                 <i className='fa fa-cart-shopping'></i>

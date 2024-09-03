@@ -24,6 +24,8 @@ import CartContextProvider, { CartContext } from './Context/CartContext'
 import toast, { Toaster } from 'react-hot-toast';
 import Checkout from './components/Checkout/Checkout'
 import Order from './components/Order/Order'
+import Wishlist from './components/Wishlist/Wishlist'
+import ForgetPass from './components/ForgetPass/ForgetPass'
 
 
 let query = new QueryClient()
@@ -38,6 +40,7 @@ function App() {
     {path:"", element: <LayOut />, children: [
       {path:"register", element: <ProtectedRoutesAuth><Register /></ProtectedRoutesAuth> },
       {path:"login", element: <ProtectedRoutesAuth><Login /></ProtectedRoutesAuth>},
+      {path:"forgetPassword", element: <ProtectedRoutesAuth><ForgetPass /></ProtectedRoutesAuth>},
       {index:true, element: <ProtectedRoutes><Home /></ProtectedRoutes> },
       {path:"cart", element: <ProtectedRoutes><Cart /></ProtectedRoutes>},
       {path:"about", element: <ProtectedRoutes><About /></ProtectedRoutes>},
@@ -47,24 +50,11 @@ function App() {
       {path:"productDetails/:id/:category", element: <ProtectedRoutes><ProductDetails /></ProtectedRoutes>},
       {path:"checkout/:cartId", element: <ProtectedRoutes><Checkout /></ProtectedRoutes>},
       {path:"allorders", element: <ProtectedRoutes><Order /></ProtectedRoutes>},
+      {path:"wishlist", element: <ProtectedRoutes><Wishlist /></ProtectedRoutes>},
 
       {path:"*", element: <NotFound />},
     ]}
   ])
-  // const routes = createBrowserRouter([
-  //   {path:"", element: <LayOut />, children: [
-  //     {index:true, element: <ProtectedRoutesAuth><Register /></ProtectedRoutesAuth> },
-  //     {path:"login", element: <ProtectedRoutesAuth><Login /></ProtectedRoutesAuth>},
-  //     {path:"home", element: <ProtectedRoutes><Home /></ProtectedRoutes> },
-  //     {path:"cart", element: <ProtectedRoutes><Cart /></ProtectedRoutes>},
-  //     {path:"about", element: <ProtectedRoutes><About /></ProtectedRoutes>},
-  //     {path:"categories", element: <ProtectedRoutes><Categories /></ProtectedRoutes>},
-  //     {path:"brands", element: <ProtectedRoutes><Brands /></ProtectedRoutes>},
-  //     {path:"products", element: <ProtectedRoutes><Products /></ProtectedRoutes>},
-
-  //     {path:"*", element: <NotFound />},
-  //   ]}
-  // ])
 
   useEffect(() => {
     getCartInfo()

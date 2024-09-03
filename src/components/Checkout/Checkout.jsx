@@ -23,9 +23,6 @@ export default function Checkout() {
             console.log("x", x);
             navigate('/allorders')
         }
-        
-        
-        
     }
 
     const myForm = useFormik({
