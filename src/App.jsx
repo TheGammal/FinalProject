@@ -26,6 +26,7 @@ import Checkout from './components/Checkout/Checkout'
 import Order from './components/Order/Order'
 import Wishlist from './components/Wishlist/Wishlist'
 import ForgetPass from './components/ForgetPass/ForgetPass'
+import CategoriesPage from './components/CategoriesPage/CategoriesPage'
 
 
 let query = new QueryClient()
@@ -44,7 +45,7 @@ function App() {
       {index:true, element: <ProtectedRoutes><Home /></ProtectedRoutes> },
       {path:"cart", element: <ProtectedRoutes><Cart /></ProtectedRoutes>},
       {path:"about", element: <ProtectedRoutes><About /></ProtectedRoutes>},
-      {path:"categories", element: <ProtectedRoutes><Categories /></ProtectedRoutes>},
+      {path:"categories", element: <ProtectedRoutes><CategoriesPage /></ProtectedRoutes>},
       {path:"brands", element: <ProtectedRoutes><Brands /></ProtectedRoutes>},
       {path:"products", element: <ProtectedRoutes><Products /></ProtectedRoutes>},
       {path:"productDetails/:id/:category", element: <ProtectedRoutes><ProductDetails /></ProtectedRoutes>},
