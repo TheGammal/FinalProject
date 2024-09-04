@@ -3,10 +3,9 @@ import styles from './ProductItem.module.css'
 import { Link } from 'react-router-dom'
 
 export default function ProductItem({product, addCart, isLoadingBtn, currentIds, addWish}) {
-    
     useEffect(() => {}, [])
     return (
-        <div className='w-1/6 p-1 border border-spacing-3'>
+        <div className='w-1/6 p-1 border border-spacing-3 relative'>
             <div className='product'>
                 <Link to={`/productDetails/${product.id}/${product.category._id}`} >
                     <img src={product.imageCover} alt="" />
@@ -20,9 +19,11 @@ export default function ProductItem({product, addCart, isLoadingBtn, currentIds,
                 <button className='btn' onClick={() => {addCart(product.id); }}>
                     {isLoadingBtn && currentIds[product.id] ? <i className='fa fa-spinner fa-spin'></i> : <span>Add to cart</span> }
                 </button>
-                <button className='btn' onClick={() => {addWish(product.id); }}>
-                    Add to wish-Test
-                </button>
+                {/* Heat Icon */}
+                <i 
+                className={`fa fa-heart ${styles.wishlistIcon}`}
+                onClick={() => {addWish(product.id); className='bg-red-600'}}
+                ></i>
             </div>
         </div>
     )

@@ -1,1 +1,11 @@
-.ProductItem {}
+.wishlistIcon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.25rem; 
+    transition: transform 0.3s ease;
+}
+
+.wishlistIcon:hover {
+    transform: scale(1.2);
+}
