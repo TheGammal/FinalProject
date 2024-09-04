@@ -22,7 +22,7 @@ export default function ProductItem({product, addCart, isLoadingBtn, currentIds,
                 {/* Heat Icon */}
                 <i 
                 className={`fa fa-heart ${styles.wishlistIcon}`}
-                onClick={() => {addWish(product.id); className='bg-red-600'}}
+                onClick={() => {addWish(product.id); }}
                 ></i>
             </div>
         </div>
