@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import styles from './Wishlist.module.css'
 import { CartContext } from '../../Context/CartContext'
 import { HashLoader } from 'react-spinners'
+import toast from 'react-hot-toast';
+
 
 export default function Wishlist() {
     let [wishlist, setWishlist] = useState(0)
@@ -9,7 +11,10 @@ export default function Wishlist() {
 
     let[apiError, setApiError] = useState(false)
 
-    let {getWish, setWishlistId, deleteWishProduct} = useContext(CartContext)
+    const [currentIds, setCurrentIds] = useState([])
+
+
+    let {getWish, setWishlistId, deleteWishProduct, addProductToCart, setNumOfItems} = useContext(CartContext)
 
     useEffect(() => {
         getWishItems()
@@ -31,6 +36,26 @@ export default function Wishlist() {
     async function deleteWishProducts(productId) {
         let data = await deleteWishProduct(productId)
         setWishlist(data)
+    }
+
+    async function addToCartItem(id) {
+
+        let x = structuredClone(currentIds)
+        x[id] = true
+        setCurrentIds(x)
+
+        let bl7 = await addProductToCart(id);
+        console.log("bl7", bl7);
+        if (bl7.data.status == "success") {
+            setNumOfItems(bl7.data.numOfCartItems)
+            toast.success(bl7.data.message);
+        } else {
+            toast.error(bl7.response.data.message)
+        }
+
+        x[id] = false
+        setCurrentIds(x) //To prevent "Loading" after pressing any button after that
+
     }
     
     return (
@@ -76,7 +101,7 @@ export default function Wishlist() {
                                     -
                                 </button>
                                 <button
-                                    onClick={() => deleteWishProducts(product._id)}
+                                    onClick={() => addToCartItem(product._id)}
                                     className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                     Add Cart
                                 </button>
