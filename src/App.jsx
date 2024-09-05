@@ -27,6 +27,8 @@ import Order from './components/Order/Order'
 import Wishlist from './components/Wishlist/Wishlist'
 import ForgetPass from './components/ForgetPass/ForgetPass'
 import CategoriesPage from './components/CategoriesPage/CategoriesPage'
+import ResetCode from './components/ResetCode/ResetCode'
+import NewPassword from './components/NewPassword/NewPassword'
 
 
 let query = new QueryClient()
@@ -42,6 +44,8 @@ function App() {
       {path:"register", element: <ProtectedRoutesAuth><Register /></ProtectedRoutesAuth> },
       {path:"login", element: <ProtectedRoutesAuth><Login /></ProtectedRoutesAuth>},
       {path:"forgetPassword", element: <ProtectedRoutesAuth><ForgetPass /></ProtectedRoutesAuth>},
+      {path:"resetCode", element: <ProtectedRoutesAuth><ResetCode /></ProtectedRoutesAuth>},
+      {path:"newPassword", element: <ProtectedRoutesAuth><NewPassword /></ProtectedRoutesAuth>},
       {index:true, element: <ProtectedRoutes><Home /></ProtectedRoutes> },
       {path:"cart", element: <ProtectedRoutes><Cart /></ProtectedRoutes>},
       {path:"about", element: <ProtectedRoutes><About /></ProtectedRoutes>},
