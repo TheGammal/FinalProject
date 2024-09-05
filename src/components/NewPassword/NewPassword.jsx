@@ -38,7 +38,7 @@ export default function NewPassword() {
                     console.log(res);
                     setMessage('Password reset successfully.');
                     setIsLoading(false);
-                    // Navigate to login page or other appropriate page
+
                     navigate('/login');
                 })
                 .catch((err) => {

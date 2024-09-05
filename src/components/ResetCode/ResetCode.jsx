@@ -32,7 +32,7 @@ export default function ResetCode() {
                     console.log(res);
                     setMessage('Reset code verified successfully.');
                     setIsLoading(false);
-                    // Navigate to the next step, e.g., reset password page
+
                     navigate('/newPassword');
                 })
                 .catch((err) => {
